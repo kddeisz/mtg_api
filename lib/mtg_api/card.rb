@@ -13,5 +13,10 @@ module MtgApi
       setter :border, Utilities::Border
       setter :colors, Utilities::ColorList
     end
+
+    # the set that this card corresponds to
+    def set
+      Set.where(code: @set).first
+    end
   end
 end

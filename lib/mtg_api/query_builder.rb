@@ -4,7 +4,7 @@ module MtgApi
     attr_accessor :clazz, :stored_conditions, :stored_limit, :stored_order
 
     extend Forwardable
-    def_delegators :all, :each, :last
+    def_delegators :all, :each, :last, :inspect
 
     include Enumerable
 

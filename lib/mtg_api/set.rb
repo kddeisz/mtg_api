@@ -17,5 +17,9 @@ module MtgApi
       setter :type, Utilities::SetType
     end
 
+    # the cards that belong to this set
+    def cards
+      Card.where(set: code)
+    end
   end
 end

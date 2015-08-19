@@ -1,3 +1,7 @@
+require 'forwardable'
+require 'json'
+require 'net/http'
+
 require 'mtg_api/config'
 require 'mtg_api/request'
 require 'mtg_api/request_entity'
