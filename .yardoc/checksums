@@ -1,0 +1,14 @@
+lib/mtg_api.rb 15d1dd2a793100b8e460c49efa5d1007772080dd
+lib/mtg_api/set.rb 6deaeef22ecafb1b4fbe36707147bb083ba39446
+lib/mtg_api/card.rb fc5947edfb2dd3b8f702ff285f3cd20144f808aa
+lib/mtg_api/config.rb 55f07ee30898e733daa5b76c742bdc652bed7dcb
+lib/mtg_api/request.rb 1672bcde38054821e48e7e79606e949767487c4e
+lib/mtg_api/version.rb 7751695e8366ab6fcd380a1b38d15a3aa08a8692
+lib/mtg_api/utilities.rb 65c984d8ae35875fccce5e5cafc227efe89ac46d
+lib/mtg_api/query_builder.rb 8bbcffbad3c1b68536c4ede581d0fcd97b70be97
+lib/mtg_api/request_entity.rb 50d3416de80dd4633e52249c2d6f1717b8f9cec0
+lib/mtg_api/utilities/border.rb ad5b1cf3030e9d1a96fb6506c1726e41dadf31ff
+lib/mtg_api/utilities/set_type.rb e765e406dd44eb25369807b59434b528bcb87160
+lib/mtg_api/utilities/set_links.rb 3d9a65890cb35db4cb56b35527533ba60752a86f
+lib/mtg_api/utilities/white_list.rb 0ba752dca639e339b9cecf17f8343b64559b35a9
+lib/mtg_api/utilities/color_list.rb 8cd650dd96bc5578fc17892588c85088c5b44af4

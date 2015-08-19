@@ -4,5 +4,9 @@ require 'mtg_api/utilities/color_list'
 require 'mtg_api/utilities/set_type'
 require 'mtg_api/utilities/set_links'
 
-# utility classes for storing attributes returned from the api
-module MtgApi::Utilities; end
+module MtgApi
+
+  # builds structures for attributes of entities
+  module Utilities
+  end
+end

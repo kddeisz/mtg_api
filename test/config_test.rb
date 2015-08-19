@@ -24,13 +24,13 @@ class ConfigTest < Minitest::Test
     assert_equal %w[two three five], config.accessors
   end
 
-  def test_attr
+  def test_attribute
     config = new_config
 
-    config.attr 'one'
+    config.attribute 'one'
     assert_equal ['one'], config.attributes
 
-    config.attr *%w[two three]
+    config.attribute *%w[two three]
     assert_equal %w[one two three], config.attributes
   end
 
@@ -44,20 +44,20 @@ class ConfigTest < Minitest::Test
 
   def test_full_config
     config = new_config(Object)
-    config.attr *%w[one two]
-    config.prop *%w[two three]
+    config.attribute *%w[one two]
+    config.property *%w[two three]
     config.setter 'four', Double
 
     assert_equal %w[one two three four], config.full_config
   end
 
-  def test_prop
+  def test_property
     config = new_config
 
-    config.prop 'one'
+    config.property 'one'
     assert_equal ['one'], config.properties
 
-    config.prop *%w[two three]
+    config.property *%w[two three]
     assert_equal %w[one two three], config.properties
   end
 

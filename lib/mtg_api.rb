@@ -12,4 +12,5 @@ require 'mtg_api/card'
 require 'mtg_api/set'
 
 # namespace for the MtgApi gem
-module MtgApi; end
+module MtgApi
+end

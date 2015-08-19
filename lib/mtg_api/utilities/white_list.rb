@@ -11,10 +11,7 @@ module MtgApi
       # store and validate the given value
       def initialize(value)
         self.value = value
-
-        unless valid?
-          raise ArgumentError, "Invalid value given: #{value.inspect}"
-        end
+        fail ArgumentError, "Invalid value given: #{value.inspect}" unless valid?
       end
 
       class << self

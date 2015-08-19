@@ -58,8 +58,8 @@ class RequestEntityTest < Minitest::Test
   def test_configure_defines_accessors
     entity = Class.new(MtgApi::RequestEntity)
     entity.configure do
-      attr :attr_one
-      prop :attr_two
+      attribute :attr_one
+      property :attr_two
     end
 
     %i[attr_one attr_two].each do |name|
@@ -74,7 +74,7 @@ class RequestEntityTest < Minitest::Test
       @fake_entity ||= begin
         entity = Class.new(MtgApi::RequestEntity)
         entity.configure do
-          attr :attr_one, :attr_two
+          attribute :attr_one, :attr_two
           setter :attr_three, SetterFake
         end
         entity

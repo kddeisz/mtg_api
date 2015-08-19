@@ -20,8 +20,8 @@ module MtgApi
     end
 
     # add to the attributes list (queryable)
-    def attr(*attrs)
-      self.attributes += attrs
+    def attribute(*attributes)
+      self.attributes += attributes
     end
 
     # the endpoint to send to the api for the entity
@@ -35,8 +35,8 @@ module MtgApi
     end
 
     # add to the properties list (unqueryable)
-    def prop(*props)
-      self.properties += props
+    def property(*properties)
+      self.properties += properties
     end
 
     # the key in the response for the api
@@ -46,7 +46,7 @@ module MtgApi
 
     # build a setter that can map the return value from the api
     def setter(attribute, clazz = nil, &block)
-      setters[attribute] = Proc.new do |value|
+      setters[attribute] = proc do |value|
         value = clazz.nil? ? block.call(value) : clazz.new(value)
         instance_variable_set(:"@#{attribute}", value)
       end

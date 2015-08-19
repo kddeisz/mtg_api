@@ -6,15 +6,13 @@ module MtgApi
     # build a card set from a set of attributes
     def initialize(attributes = {})
       attributes.each do |key, value|
-        if self.respond_to?(:"#{key}=")
-          self.send(:"#{key}=", value)
-        end
+        send(:"#{key}=", value) if respond_to?(:"#{key}=")
       end
     end
 
     # the attributes of this request entity
     def attributes
-      self.class.config.full_config.map { |attribute| [attribute, self.send(attribute)] }.to_h
+      self.class.config.full_config.map { |attribute| [attribute, send(attribute)] }.to_h
     end
 
     class << self

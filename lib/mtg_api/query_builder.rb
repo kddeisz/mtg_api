@@ -32,9 +32,7 @@ module MtgApi
 
     # store the limit to the response of the query if it is valid
     def limit(limit)
-      unless limit > 0
-        raise ArgumentError, "Invalid limit given: #{limit}"
-      end
+      fail ArgumentError, "Invalid limit given: #{limit}" unless limit > 0
 
       self.stored_limit = limit
       self
@@ -43,7 +41,7 @@ module MtgApi
     # store the order to sort the response of the query if it is valid
     def order(order)
       unless clazz.attributes.include?(order)
-        raise ArgumentError, "Invalid order given: #{order}"
+        fail ArgumentError, "Invalid order given: #{order}"
       end
 
       self.stored_order = order
@@ -53,10 +51,10 @@ module MtgApi
     # store the conditions of this query if they are valid
     def where(conditions)
       if (invalid = (conditions.keys - clazz.attributes)).any?
-        raise ArgumentError, "Invalid conditions given: #{invalid.join(', ')}"
+        fail ArgumentError, "Invalid conditions given: #{invalid.join(', ')}"
       end
 
-      self.stored_conditions.merge!(conditions)
+      stored_conditions.merge!(conditions)
       self
     end
 
@@ -66,7 +64,10 @@ module MtgApi
       def endpoint
         endpoint = clazz.config.endpoint.dup
         if stored_conditions.any?
-          endpoint << '?' + stored_conditions.map { |key, value| URI.escape("#{key}=#{value}") }.join('&')
+          query_string = stored_conditions.map do |key, value|
+            URI.escape("#{key}=#{value}")
+          end
+          endpoint << '?' + query_string.join('&')
         end
         endpoint
       end

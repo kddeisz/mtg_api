@@ -4,10 +4,10 @@ module MtgApi
   class Set < RequestEntity
 
     configure do
-      attr :block, :border, :code, :gatherer_code, :name
-      attr :old_code, :online_only, :release_date, :type
+      attribute :block, :border, :code, :gatherer_code, :name
+      attribute :old_code, :online_only, :release_date, :type
 
-      prop :card_count, :links, :symbol_images
+      property :card_count, :links, :symbol_images
 
       setter :border, Utilities::Border
       setter :links do |links|
