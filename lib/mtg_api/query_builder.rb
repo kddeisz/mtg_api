@@ -57,7 +57,7 @@ module MtgApi
       def endpoint
         endpoint = clazz.config.endpoint.dup
         if stored_conditions.any?
-          endpoint << '?' + stored_conditions.map { |key, value| "#{key}=#{value}" }.join('&')
+          endpoint << '?' + stored_conditions.map { |key, value| URI.escape("#{key}=#{value}") }.join('&')
         end
         endpoint
       end
