@@ -2,8 +2,10 @@ module MtgApi
   module Utilities
     class WhiteList
 
+      # the value of this instance of a whitelist
       attr_accessor :value
 
+      # store and validate the given value
       def initialize(value)
         self.value = value
 
@@ -13,14 +15,16 @@ module MtgApi
       end
 
       class << self
+        # the list of available values
         attr_accessor :list
       end
 
       private
 
+        # whether or not the given value is valid
         def valid?
           if value.is_a?(Array)
-            (value - self.class.list).any?
+            (value - self.class.list).none?
           else
             self.class.list.include?(value)
           end
