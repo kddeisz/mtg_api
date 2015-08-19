@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'mtg_api'
+
+require 'forwardable'
+require 'json'
+require 'net/http'
+
+require 'irb'
+IRB.start
