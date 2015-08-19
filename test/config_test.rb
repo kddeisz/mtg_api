@@ -42,6 +42,15 @@ class ConfigTest < Minitest::Test
     assert_equal '/triples', config.endpoint
   end
 
+  def test_full_config
+    config = new_config(Object)
+    config.attr *%w[one two]
+    config.prop *%w[two three]
+    config.setter 'four', Double
+
+    assert_equal %w[one two three four], config.full_config
+  end
+
   def test_prop
     config = new_config
 

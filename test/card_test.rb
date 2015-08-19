@@ -11,6 +11,9 @@ class CardTest < Minitest::Test
   end
 
   def test_set
-    skip
+    card = MtgApi::Card.new(set: 'test')
+
+    endpoint = fake_server { card.set }
+    assert_match /\?code=test$/, endpoint.to_s
   end
 end

@@ -27,6 +27,14 @@ class SetTest < Minitest::Test
   end
 
   def test_cards
-    skip
+    set = MtgApi::Set.new(code: 'test')
+
+    endpoint = fake_server do
+      cards = set.cards
+      assert_kind_of MtgApi::QueryBuilder, cards
+
+      cards.all
+    end
+    assert_match /\?set=test$/, endpoint.to_s
   end
 end

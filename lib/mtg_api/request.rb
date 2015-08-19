@@ -12,10 +12,8 @@ module MtgApi
 
     # get the response
     def response
-      @response ||= begin
-        puts "\e[32mGET #{endpoint}\e[0m"
-        JSON.parse(Net::HTTP.get(endpoint))
-      end
+      puts "\e[32mGET #{endpoint}\e[0m"
+      @response ||= JSON.parse(raw_response)
     end
 
     # the section of the response, formatted in snake case
@@ -26,6 +24,11 @@ module MtgApi
     end
 
     private
+
+      # the response from the server
+      def raw_response
+        Net::HTTP.get(endpoint)
+      end
 
       # format a hash to have snake case keys
       def rubyify(entity)

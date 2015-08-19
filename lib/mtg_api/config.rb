@@ -22,6 +22,10 @@ module MtgApi
       @endpoint ||= '/' + response_key
     end
 
+    def full_config
+      (attributes + properties + setters.keys).uniq
+    end
+
     def prop(*props)
       self.properties += props
     end

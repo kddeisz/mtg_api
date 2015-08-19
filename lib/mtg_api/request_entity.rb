@@ -11,14 +11,14 @@ module MtgApi
     end
 
     def attributes
-      self.class.attributes.map { |attribute| [attribute, self.send(attribute)] }.to_h
+      self.class.config.full_config.map { |attribute| [attribute, self.send(attribute)] }.to_h
     end
 
     class << self
       attr_accessor :config
 
       extend Forwardable
-      def_delegators :config, :attr, :attributes, :prop, :properties, :setter
+      def_delegators :config, :attributes, :properties
       def_delegators :query_builder, :all, :limit, :where, :first, :last, :order
 
       def configure(&block)
