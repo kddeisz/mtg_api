@@ -1,4 +1,6 @@
 module MtgApi
+
+  # represents a card in MtG
   class Card < RequestEntity
 
     configure do

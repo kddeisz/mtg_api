@@ -1,6 +1,9 @@
 module MtgApi
+
+  # builds queries to send to the api
   class QueryBuilder
 
+    # the stored class and query parameters
     attr_accessor :clazz, :stored_conditions, :stored_limit, :stored_order
 
     extend Forwardable
@@ -8,11 +11,13 @@ module MtgApi
 
     include Enumerable
 
+    # store the class and initialize an empty conditions hash
     def initialize(clazz)
       self.clazz = clazz
       self.stored_conditions = {}
     end
 
+    # builds a request object and maps the responses onto the class
     def all
       response = Request.new(endpoint).response_for(clazz.config.response_key)
       response = response[0...stored_limit] unless stored_limit.nil?
@@ -25,6 +30,7 @@ module MtgApi
       response
     end
 
+    # store the limit to the response of the query if it is valid
     def limit(limit)
       unless limit > 0
         raise ArgumentError, "Invalid limit given: #{limit}"
@@ -34,6 +40,7 @@ module MtgApi
       self
     end
 
+    # store the order to sort the response of the query if it is valid
     def order(order)
       unless clazz.attributes.include?(order)
         raise ArgumentError, "Invalid order given: #{order}"
@@ -43,6 +50,7 @@ module MtgApi
       self
     end
 
+    # store the conditions of this query if they are valid
     def where(conditions)
       if (invalid = (conditions.keys - clazz.attributes)).any?
         raise ArgumentError, "Invalid conditions given: #{invalid.join(', ')}"
@@ -54,6 +62,7 @@ module MtgApi
 
     private
 
+      # the configured endpoint, taking into account conditions
       def endpoint
         endpoint = clazz.config.endpoint.dup
         if stored_conditions.any?

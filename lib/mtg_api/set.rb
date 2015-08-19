@@ -1,4 +1,6 @@
 module MtgApi
+
+  # represents a set in MtG
   class Set < RequestEntity
 
     configure do

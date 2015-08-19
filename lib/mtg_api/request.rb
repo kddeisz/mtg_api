@@ -1,8 +1,12 @@
 module MtgApi
+
+  # builds and sends requests to the api server
   class Request
 
+    # the root url of the api
     ROOT_URL = 'http://api.mtgapi.com/v2'
 
+    # the url for this request
     attr_accessor :endpoint
 
     # build a new request

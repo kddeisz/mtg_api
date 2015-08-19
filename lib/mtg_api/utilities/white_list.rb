@@ -1,5 +1,8 @@
 module MtgApi
   module Utilities
+
+    # a class that validates that the initialization value is
+    # contained in the list stored on the class
     class WhiteList
 
       # the value of this instance of a whitelist
