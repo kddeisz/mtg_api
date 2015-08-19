@@ -9,6 +9,7 @@ Gem::Specification.new do |spec|
   spec.version       = MtgApi::VERSION
   spec.authors       = ['Kevin Deisz']
   spec.email         = ['kevin.deisz@gmail.com']
+  spec.homepage      = 'https://github.com/kddeisz/mtg_api'
 
   spec.summary       = 'Ruby integration with mtgapi.com'
   spec.description   = 'Query for cards, sets, and boosters against the mtgapi.com API'
