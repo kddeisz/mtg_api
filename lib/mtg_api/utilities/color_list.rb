@@ -4,7 +4,7 @@ module MtgApi
     # stores the list of colors on a card
     class ColorList < WhiteList
 
-      self.list = ['white', 'blue', 'green', 'red', 'black', nil]
+      self.list = ['White', 'Blue', 'Green', 'Red', 'Black', nil]
 
     end
   end
