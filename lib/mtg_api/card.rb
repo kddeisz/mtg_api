@@ -17,6 +17,8 @@ module MtgApi
     end
 
     # the set that this card corresponds to
+    #     card = MtgApi::Card.new(set: 'UNH')
+    #     assert_equal 'Unhinged', card.set.name
     def set
       Set.where(code: @set).first
     end

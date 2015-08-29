@@ -20,6 +20,8 @@ module MtgApi
     end
 
     # the cards that belong to this set
+    #     set = MtgApi::Set.new(code: 'UNH')
+    #     assert_equal 'Unhinged', set.cards.first.set.name
     def cards
       Card.where(set: code)
     end

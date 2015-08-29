@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'mtg_api'
+
+require 'pathname'
+require 'minitest/autorun'
+
+class CommentTestsRunner
+
+  attr_accessor :comments, :filepaths, :unclaimed
+
+  def initialize(filepaths)
+    self.filepaths = filepaths
+    reset
+  end
+
+  def autorun
+    filepaths.each do |filepath|
+      next if File.directory?(filepath)
+      parse(filepath)
+      build(filepath)
+    end
+  end
+
+  private
+
+    def build(filepath)
+      clazz = Class.new(Minitest::Test)
+      comments.each do |test_name, method_body|
+        clazz.class_eval("def test_#{test_name}; #{method_body}; end")
+      end
+
+      clazz_name = (Pathname(filepath).basename('.rb').to_s.capitalize + 'Test').to_sym
+      self.class.const_set(clazz_name, clazz)
+      reset
+    end
+
+    def parse(filepath)
+      File.foreach(filepath) do |line|
+        if /\A\s*#\s{5,}(.*)/ === line
+          unclaimed << $1
+        elsif /\A\s*(?:def|class|module)\s(\w+)/ === line
+          write($1.to_sym)
+        end
+      end
+    end
+
+    def reset
+      self.comments = {}
+      self.unclaimed = []
+    end
+
+    def write(identifier)
+      return unless unclaimed.any?
+      comments[identifier] = unclaimed.join("\n")
+      self.unclaimed = []
+    end
+end
+
+CommentTestsRunner.new(ARGV).autorun
