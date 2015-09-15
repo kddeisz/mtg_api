@@ -14,3 +14,5 @@ require 'mtg_api/set'
 # namespace for the MtgApi gem
 module MtgApi
 end
+
+"oh man"
